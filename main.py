@@ -32,7 +32,7 @@ def btnRinominaEseguiOnClick():
 
 ## Metodo
 def btnMetodoElencoOnClick():
-    metodo_PERCORSO_ELENCO = filedialog.askdirectory(initialdir="./", title="Scegli cartella elenco")
+    metodo_PERCORSO_ELENCO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*")))
     LblElencoMetodo.config(text = metodo_PERCORSO_ELENCO)
 def btnMetodoEseguiOnClick():
     try:
