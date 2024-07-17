@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
-import timbro
+import timbro, rinomina, metodo_numero
 # Functions
 ## Menu
 def menu():
@@ -42,6 +42,8 @@ def btnEseguiOnClick():
 root = Tk()
 root.geometry("645x215")
 root.title("Clerk Buddy")
+img = PhotoImage(file="icon.png")
+root.iconphoto(TRUE, img)
 
 frameRinomina = Frame(root)
 frameMetodo = Frame(root)
