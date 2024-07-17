@@ -70,6 +70,9 @@ root.iconphoto(TRUE, img)
 
 body = Frame(root)
 body.place(x=0, y=0, width=645, height=215)
+logo = PhotoImage(file="home.png")
+display = Label(body, image = logo)
+display.place(x=180, y=30, width=400)
 
 frameRinomina = Frame(body)
 frameMetodo = Frame(body)
