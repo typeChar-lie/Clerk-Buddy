@@ -8,6 +8,12 @@ import os
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+# Global variables      // non ho trovato altro modo per farlo funzionare
+rinomina_PERCORSO_CARTELLA = ""
+metodo_PERCORSO_ELENCO = ""
+timbro_PERCORSO_CARTELLA = ""
+timbro_PERCORSO_METODO = ""
+timbro_PERCORSO_NUMERO = ""
 # Functions
 ## Menu
 def menu():
@@ -27,40 +33,50 @@ def menu():
 
 ## Rinomina
 def btnRinominaCartellaOnClick():
-    rinomina_PERCORSO_CARTELLA = filedialog.askdirectory(initialdir="./", title="Scegli cartella PDF")
+    global rinomina_PERCORSO_CARTELLA
+    rinomina_PERCORSO_CARTELLA = filedialog.askdirectory(initialdir="./", title="Scegli cartella PDF") + "/"
     LblCartellaRinomina.config(text = rinomina_PERCORSO_CARTELLA)
+    print(rinomina_PERCORSO_CARTELLA)
 def btnRinominaEseguiOnClick():
     try:
+        global rinomina_PERCORSO_CARTELLA
         if(messagebox.askokcancel(message="Procedere?")):
-            rinomina.main(LblCartellaRinomina.cget("text"))
+            print(rinomina_PERCORSO_CARTELLA)
+            rinomina.main(rinomina_PERCORSO_CARTELLA)
     except:
         messagebox.Message(message= "Selezionare percorsi richiesti")
 
 ## Metodo
 def btnMetodoElencoOnClick():
-    metodo_PERCORSO_ELENCO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*")))
+    global metodo_PERCORSO_ELENCO
+    metodo_PERCORSO_ELENCO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*"))) + "/"
     LblElencoMetodo.config(text = metodo_PERCORSO_ELENCO)
 def btnMetodoEseguiOnClick():
     try:
+        global metodo_PERCORSO_ELENCO
         if(messagebox.askokcancel(message="Procedere?")):
-            metodo.main(LblElencoMetodo.cget("text"))
+            metodo.main(metodo_PERCORSO_ELENCO)
     except:
         messagebox.Message(message= "Selezionare percorsi richiesti")
 
 ## Timbro
 def btnTimbroCartellaOnClick():
-    timbro_PERCORSO_CARTELLA = filedialog.askdirectory(initialdir="./", title="Scegli cartella PDF")
+    global timbro_PERCORSO_CARTELLA
+    timbro_PERCORSO_CARTELLA = filedialog.askdirectory(initialdir="./", title="Scegli cartella PDF") + "/"
     LblCartellaTimbro.config(text = timbro_PERCORSO_CARTELLA)
 def btnTimbroMetodoOnClick():
-    timbro_PERCORSO_METODO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*")))
+    global timbro_PERCORSO_METODO
+    timbro_PERCORSO_METODO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*"))) + "/"
     LblMetodoTimbro.config(text = timbro_PERCORSO_METODO)
 def btnTimbroNumeroOnClick():
-    timbro_PERCORSO_NUMERO = filedialog.askopenfilename(initialdir="./", title="Scegli file numeri fatture",filetypes=(("txt files", "*.txt"),("all files", "*.*")))
+    global timbro_PERCORSO_NUMERO
+    timbro_PERCORSO_NUMERO = filedialog.askopenfilename(initialdir="./", title="Scegli file numeri fatture",filetypes=(("txt files", "*.txt"),("all files", "*.*"))) + "/"
     LblNumeroTimbro.config(text = timbro_PERCORSO_NUMERO)
 def btnTimbroEseguiOnClick():
     try:
+        global timbro_PERCORSO_CARTELLA, timbro_PERCORSO_METODO, timbro_PERCORSO_NUMERO
         if(messagebox.askokcancel(message="Procedere?")):
-            timbro.main(LblCartellaTimbro.cget("text"), LblMetodoTimbro.cget("text"), LblNumeroTimbro.cget("text"))
+            timbro.main(timbro_PERCORSO_CARTELLA, timbro_PERCORSO_METODO, timbro_PERCORSO_NUMERO)
     except:
         messagebox.Message(message= "Selezionare percorsi richiesti")
 

@@ -1,0 +1,1 @@
+pyinstaller --onefile --uac-admin --windowed --add-data "*.png:." --add-data "*.ico:." --icon=icon.ico main.py

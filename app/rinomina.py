@@ -13,6 +13,7 @@ def main(rinomina_PERCORSO_CARTELLA:str):
     with os.scandir(cartella) as entries:
         for entry in entries:
             old_name= cartella + entry.name
+            print(old_name)
             extracted_text= extract(old_name)
             if(extracted_text[1]=='-'):
                 numero = '0' + extracted_text[0]
