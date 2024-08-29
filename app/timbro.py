@@ -21,7 +21,7 @@ def timbra_pagate(fatturaPath:str, fatturaNum:int, timbro_PERCORSO_NUMERO:str, t
     can = canvas.Canvas(packet, pagesize=A4)
     can.setFontSize(24)
     numeri = enumerate(open(timbro_PERCORSO_NUMERO, 'r').readlines())
-    metodi= open(timbro_PERCORSO_METODO, 'r').readlines()
+    metodi = open(timbro_PERCORSO_METODO, 'r').readlines()
     for i, numero in numeri:
         if(numero.strip()==fatturaNum):
             metodo = metodi[i].strip()
@@ -60,16 +60,19 @@ def timbra_pagate(fatturaPath:str, fatturaNum:int, timbro_PERCORSO_NUMERO:str, t
     output_pdf.close()
 # Esecuzione
 def main(timbro_PERCORSO_CARTELLA:str, timbro_PERCORSO_METODO:str, timbro_PERCORSO_NUMERO:str):
-    cartella = timbro_PERCORSO_CARTELLA + "/"
+    cartella = timbro_PERCORSO_CARTELLA
     with os.scandir(cartella) as fatture:
         for fattura in fatture:
             nome_file= cartella + fattura.name
             extracted_text= extract(nome_file)
-            if(extracted_text[1]=='-'):
-                num = extracted_text[0]
-            elif(extracted_text[2]=='-'):
-                num = extracted_text[0] + extracted_text[1]
-            else:
-                num = extracted_text[0] + extracted_text[1] + extracted_text[2]
-            
+            i = 0
+            num=""
+            for carattere in extracted_text:
+                if (carattere == "-"):
+                    for x in extracted_text[i:i+5]:
+                        num +=x
+                    break
+                else:
+                    num += carattere
+                i+=1
             timbra_pagate(fattura, num, timbro_PERCORSO_NUMERO, timbro_PERCORSO_METODO)

@@ -49,7 +49,7 @@ def btnRinominaEseguiOnClick():
 ## Metodo
 def btnMetodoElencoOnClick():
     global metodo_PERCORSO_ELENCO
-    metodo_PERCORSO_ELENCO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*"))) + "/"
+    metodo_PERCORSO_ELENCO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*")))
     LblElencoMetodo.config(text = metodo_PERCORSO_ELENCO)
 def btnMetodoEseguiOnClick():
     try:
@@ -66,11 +66,11 @@ def btnTimbroCartellaOnClick():
     LblCartellaTimbro.config(text = timbro_PERCORSO_CARTELLA)
 def btnTimbroMetodoOnClick():
     global timbro_PERCORSO_METODO
-    timbro_PERCORSO_METODO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*"))) + "/"
+    timbro_PERCORSO_METODO = filedialog.askopenfilename(initialdir="./", title="Scegli file metodi pagamento",filetypes=(("txt files", "*.txt"),("all files", "*.*")))
     LblMetodoTimbro.config(text = timbro_PERCORSO_METODO)
 def btnTimbroNumeroOnClick():
     global timbro_PERCORSO_NUMERO
-    timbro_PERCORSO_NUMERO = filedialog.askopenfilename(initialdir="./", title="Scegli file numeri fatture",filetypes=(("txt files", "*.txt"),("all files", "*.*"))) + "/"
+    timbro_PERCORSO_NUMERO = filedialog.askopenfilename(initialdir="./", title="Scegli file numeri fatture",filetypes=(("txt files", "*.txt"),("all files", "*.*")))
     LblNumeroTimbro.config(text = timbro_PERCORSO_NUMERO)
 def btnTimbroEseguiOnClick():
     try:

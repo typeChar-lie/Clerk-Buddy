@@ -10,19 +10,20 @@ def main(metodo_PERCORSO_ELENCO:str):
         # Itera su ogni riga del file
         for linea in linee:
             # Applicare l'espressione regolare e ottenere la parola e il numero di fattura
-            risultato = re.findall(r'(BONIFICO|ASSEGNO|POS|CONTANTI).*?Nr\.\s(\d+)', linea)
+            risultato = re.findall(r'(BONIFICO|ASSEGNO|POS|CONTANTI).*?Nr\.\s*(\d+)([-]\d+)', linea)
 
             if risultato:
                 parola = risultato[0][0]
                 numero_fattura = risultato[0][1]
-                corrispondenze.append((parola, numero_fattura))
-            else:
+                anno = risultato[0][2]
+                corrispondenze.append((parola, numero_fattura, anno))
+            elif(linea.strip()!=""):
                 file_eccezioni.write(linea)
 
         # Ordina la lista di corrispondenze in base ai numeri di fattura
         corrispondenze.sort(key=lambda x: int(x[1]))
 
         # Scrivi le corrispondenze ordinate nei file di output
-        for parola, numero_fattura in corrispondenze:
+        for parola, numero_fattura, anno in corrispondenze:
             file_metodo.write(f"{parola}\n")
-            file_numero.write(f"{numero_fattura}\n")
+            file_numero.write(f"{numero_fattura + anno}\n")
